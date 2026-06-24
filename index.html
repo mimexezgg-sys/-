@@ -4,307 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>บริษัท นายช่าง คอนเวเยอร์ ซิสเต็มส์ จำกัด</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
-            --primary-color: #0F172A; /* น้ำเงินเข้มอุตสาหกรรม */
-            --secondary-color: #1E3A8A; /* น้ำเงินสว่าง */
-            --accent-color: #F97316; /* ส้มเซฟตี้ */
+            --primary-color: #0F172A;
+            --secondary-color: #1E3A8A;
+            --accent-color: #F97316;
             --bg-light: #F8FAFC;
             --text-dark: #334155;
             --border-color: #E2E8F0;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
 
-        body {
-            font-family: 'Prompt', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
+        header { background: linear-gradient(135deg, var(--primary-color) 0%, #020617 100%); color: white; padding: 3rem 1rem; text-align: center; border-bottom: 5px solid var(--accent-color); }
+        .header-container { max-width: 1200px; margin: 0 auto; }
+        header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        header .en-title { font-size: 1.1rem; color: #94A3B8; text-transform: uppercase; font-weight: 500; margin-bottom: 1.5rem; }
+        
+        .company-meta { display: inline-flex; gap: 20px; background: rgba(255, 255, 255, 0.05); padding: 10px 20px; border-radius: 50px; font-size: 0.9rem; color: #CBD5E1; }
+        .company-meta span i { color: var(--accent-color); margin-right: 5px; }
 
-        /* Header Section */
-        header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #020617 100%);
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-            position: relative;
-            border-bottom: 5px solid var(--accent-color);
-        }
+        .container { max-width: 1200px; margin: 3rem auto; padding: 0 20px; }
+        .section-intro { text-align: center; margin-bottom: 3rem; }
+        .section-intro h2 { font-size: 1.8rem; color: var(--primary-color); margin-bottom: 10px; }
+        
+        /* Status Bar */
+        .status-bar { background-color: #E0F2FE; color: #0369A1; padding: 12px; border-radius: 8px; text-align: center; margin-bottom: 2rem; font-weight: 500; border: 1px solid #7DD3FC; }
 
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .category-group { margin-bottom: 4rem; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .group-title { font-size: 1.4rem; color: var(--secondary-color); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; font-weight: 600; }
+        .group-title i { color: var(--accent-color); font-size: 1.5rem; }
 
-        header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.5px;
-        }
+        .upload-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+        .upload-card { border-radius: 12px; border: 1px solid var(--border-color); padding: 20px; transition: all 0.3s; background: #F8FAFC; }
+        .upload-card:hover { border-color: var(--secondary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.08); transform: translateY(-3px); }
+        .card-info h3 { font-size: 1.1rem; color: var(--primary-color); margin-bottom: 5px; }
+        .card-info p { font-size: 0.85rem; color: #64748B; margin-bottom: 15px; }
 
-        header .en-title {
-            font-size: 1.1rem;
-            color: #94A3B8;
-            text-transform: uppercase;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-        }
+        .upload-area { position: relative; }
+        .upload-label { display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: white; border: 2px dashed #CBD5E1; padding: 20px 10px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; text-align: center; }
+        .upload-label:hover { border-color: var(--accent-color); background-color: #FFF7ED; }
+        .upload-label i { font-size: 24px; color: #94A3B8; margin-bottom: 8px; }
+        .upload-label span { font-size: 0.85rem; color: #475569; font-weight: 500; }
+        .file-input { display: none; }
 
-        .company-meta {
-            display: inline-flex;
-            gap: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: #CBD5E1;
-        }
+        .preview-container { margin-top: 10px; display: none; position: relative; border-radius: 6px; overflow: hidden; border: 1px solid var(--border-color); }
+        .preview-container img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .remove-btn { position: absolute; top: 8px; right: 8px; background: rgba(239, 68, 68, 0.9); color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-family: 'Prompt'; transition: background 0.2s; }
+        .remove-btn:hover { background: #DC2626; }
 
-        .company-meta span i {
-            color: var(--accent-color);
-            margin-right: 5px;
-        }
-
-        /* Main Content Grid */
-        .container {
-            max-width: 1200px;
-            margin: 3rem auto;
-            padding: 0 20px;
-        }
-
-        .section-intro {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-intro h2 {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .section-intro p {
-            color: #64748B;
-        }
-
-        /* Category Groups */
-        .category-group {
-            margin-bottom: 4rem;
-        }
-
-        .group-title {
-            font-size: 1.4rem;
-            color: var(--secondary-color);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 8px;
-        }
-
-        .group-title i {
-            color: var(--accent-color);
-        }
-
-        .upload-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 25px;
-        }
-
-        /* Upload Card Styling */
-        .upload-card {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            padding: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-        }
-
-        .upload-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            border-color: var(--secondary-color);
-        }
-
-        .card-info h3 {
-            font-size: 1.15rem;
-            color: var(--primary-color);
-            margin-bottom: 8px;
-        }
-
-        .card-info p {
-            font-size: 0.9rem;
-            color: #64748B;
-            margin-bottom: 20px;
-        }
-
-        /* Image Upload Interactive Area */
-        .upload-area {
-            position: relative;
-        }
-
-        .upload-label {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #F1F5F9;
-            border: 2px dashed #CBD5E1;
-            padding: 25px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-align: center;
-        }
-
-        .upload-label:hover {
-            background-color: #E2E8F0;
-            border-color: var(--accent-color);
-        }
-
-        .upload-label i {
-            font-size: 24px;
-            color: #64748B;
-            margin-bottom: 8px;
-        }
-
-        .upload-label span {
-            font-size: 0.85rem;
-            color: #475569;
-            font-weight: 500;
-        }
-
-        .file-input {
-            display: none;
-        }
-
-        /* Image Preview Thumbnail */
-        .preview-container {
-            margin-top: 15px;
-            display: none;
-            position: relative;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-
-        .preview-container img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .remove-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: rgba(239, 68, 68, 0.9);
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-
-        /* Fixed Footer Contact Banner */
-        .contact-sticky-banner {
-            background: white;
-            border-top: 2px solid var(--border-color);
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: 0 -10px 25px -5px rgba(0, 0, 0, 0.05);
-        }
-
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .contact-header h3 {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-
-        .contact-header p {
-            font-size: 0.95rem;
-            color: #64748B;
-            margin-bottom: 1.5rem;
-        }
-
-        .phone-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
-
-        .btn-phone {
-            display: inline-flex;
-            align-items: center;
-            background-color: var(--accent-color);
-            color: white;
-            text-decoration: none;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: 600;
-            box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
-            transition: all 0.2s ease;
-        }
-
-        .btn-phone:hover {
-            background-color: #EA580C;
-            transform: scale(1.03);
-        }
-
-        .btn-phone i {
-            margin-right: 10px;
-            font-size: 1.4rem;
-        }
-
-        .office-info {
-            font-size: 0.9rem;
-            color: #475569;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-
-        footer {
-            background-color: var(--primary-color);
-            color: #94A3B8;
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 0.85rem;
-            border-top: 1px solid #1E293B;
-        }
+        .contact-sticky-banner { background: white; border-top: 2px solid var(--border-color); padding: 2rem 1rem; text-align: center; margin-top: 4rem; }
+        .contact-header h3 { font-size: 1.3rem; color: var(--primary-color); margin-bottom: 5px; }
+        .phone-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 1.5rem 0; }
+        .btn-phone { display: inline-flex; align-items: center; background-color: var(--secondary-color); color: white; text-decoration: none; padding: 14px 32px; border-radius: 50px; font-size: 1.3rem; font-weight: 600; box-shadow: 0 4px 10px rgba(30, 58, 138, 0.2); transition: all 0.2s ease; }
+        .btn-phone:hover { background-color: var(--primary-color); transform: scale(1.03); }
+        
+        footer { background-color: var(--primary-color); color: #94A3B8; text-align: center; padding: 1.5rem; font-size: 0.85rem; }
 
         @media (max-width: 768px) {
             header h1 { font-size: 1.6rem; }
             .company-meta { flex-direction: column; gap: 5px; border-radius: 12px; }
-            .phone-grid { flex-direction: column; align-items: center; gap: 10px; }
             .btn-phone { width: 100%; max-width: 300px; justify-content: center; }
         }
     </style>
@@ -317,180 +80,77 @@
             <div class="en-title">Naichung Conveyor Systems Co., Ltd.</div>
             <div class="company-meta">
                 <span><i class="fa-solid fa-user-tie"></i> ผู้จัดการ: คุณมารุต แตงเจริญ</span>
-                <span><i class="fa-solid fa-envelope"></i> naichung2551@gmail.com</span>
+                <span><i class="fa-solid fa-phone"></i> 089-830-4774</span>
             </div>
         </div>
     </header>
 
     <div class="container">
+        
+        <div class="status-bar">
+            <i class="fa-solid fa-floppy-disk"></i> ระบบบันทึกข้อมูลอัตโนมัติเปิดใช้งานอยู่ (ข้อมูลจะคงอยู่แม้ปิดหน้าเว็บนี้ไปแล้ว)
+        </div>
+
         <div class="section-intro">
-            <h2>ระบบอัปโหลดและจัดเก็บรูปภาพตามสายงาน</h2>
-            <p>โปรดเลือกหมวดหมู่งานที่ต้องการเพื่ออัปโหลดรูปภาพบันทึกหน้างาน</p>
+            <h2>ระบบบันทึกรูปภาพตามสายงานหน้าเว็บค้างไว้</h2>
+            <p>เมื่อท่านเลือกรูปภาพ ระบบจะทำการล็อกบันทึกเก็บไว้ในเครื่องให้อัตโนมัติทันที</p>
         </div>
 
         <div class="category-group">
-            <div class="group-title">
-                <i class="fa-solid fa-gear"></i>
-                <span>หมวดที่ 1: งานระบบสายพานลำเลียง (Conveyor Systems)</span>
-            </div>
+            <div class="group-title"><i class="fa-solid fa-gear"></i> หมวดที่ 1: งานระบบสายพานลำเลียง</div>
             <div class="upload-grid">
                 <div class="upload-card">
-                    <div class="card-info">
-                        <h3>งานต่อสายพาน และซ่อมโครงสายพาน</h3>
-                        <p>อัปโหลดรูปจุดต่อสายพาน รอยซ่อมโครงสร้าง หรือรอยต่อทุกชนิด</p>
-                    </div>
+                    <div class="card-info"><h3>งานสร้างและซ่อมโครงสายพานทุกชนิด</h3><p>รอยต่อสายพาน รอยเชื่อมโครงสร้าง</p></div>
                     <div class="upload-area">
-                        <label class="upload-label">
-                            <input type="file" class="file-input" accept="image/*" onchange="previewImage(this)">
-                            <i class="fa-solid fa-camera"></i>
-                            <span>คลิกเพื่ออัปโหลดรูปภาพ</span>
-                        </label>
-                        <div class="preview-container">
-                            <img src="" alt="Preview">
-                            <button class="remove-btn" onclick="clearPreview(this)">ลบรูป</button>
-                        </div>
+                        <label class="upload-label" id="label_conveyor"><input type="file" class="file-input" data-slot="conveyor" accept="image/*" onchange="previewAndSave(this)"><i class="fa-solid fa-camera"></i><span>คลิกเพื่ออัปโหลด</span></label>
+                        <div class="preview-container" id="preview_conveyor"><img src="" id="img_conveyor" alt="Preview"><button type="button" class="remove-btn" onclick="clearAndSave('conveyor')">ลบรูป</button></div>
                     </div>
                 </div>
-
                 <div class="upload-card">
-                    <div class="card-info">
-                        <h3>งานรื้อและตั้งรถ ลำเลียงเบื้องต้น</h3>
-                        <p>อัปโหลดรูปภาพชุดรถลำเลียง การตั้งศูนย์ หรือขั้นตอนการรื้อถอนหน้างาน</p>
-                    </div>
+                    <div class="card-info"><h3>งานปรับปรุงและติดตั้งเครื่องจักร</h3><p>การติดตั้งชุดขับเคลื่อนหรือโครงสร้างตั้งศูนย์</p></div>
                     <div class="upload-area">
-                        <label class="upload-label">
-                            <input type="file" class="file-input" accept="image/*" onchange="previewImage(this)">
-                            <i class="fa-solid fa-camera"></i>
-                            <span>คลิกเพื่ออัปโหลดรูปภาพ</span>
-                        </label>
-                        <div class="preview-container">
-                            <img src="" alt="Preview">
-                            <button class="remove-btn" onclick="clearPreview(this)">ลบรูป</button>
-                        </div>
+                        <label class="upload-label" id="label_install"><input type="file" class="file-input" data-slot="install" accept="image/*" onchange="previewAndSave(this)"><i class="fa-solid fa-camera"></i><span>คลิกเพื่ออัปโหลด</span></label>
+                        <div class="preview-container" id="preview_install"><img src="" id="img_install" alt="Preview"><button type="button" class="remove-btn" onclick="clearAndSave('install')">ลบรูป</button></div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="category-group">
-            <div class="group-title">
-                <i class="fa-solid fa-industry"></i>
-                <span>หมวดที่ 2: งานถังและระบบท่อ (Tanks & Piping)</span>
-            </div>
+            <div class="group-title"><i class="fa-solid fa-screwdriver-wrench"></i> หมวดที่ 2: งานระบบไฮดรอลิคและ Modify</div>
             <div class="upload-grid">
                 <div class="upload-card">
-                    <div class="card-info">
-                        <h3>งานซ่อมถัง / งานซ่อมปะถัง</h3>
-                        <p>อัปโหลดรูปชิ้นงานซ่อมปะถังอุตสาหกรรม รอยเชื่อม หรือจุดชำรุดเสียหาย</p>
-                    </div>
+                    <div class="card-info"><h3>งานระบบไฮดรอลิค</h3><p>สายไฮดรอลิค กระบอกสูบ ปั๊ม หรือชุดกำลัง</p></div>
                     <div class="upload-area">
-                        <label class="upload-label">
-                            <input type="file" class="file-input" accept="image/*" onchange="previewImage(this)">
-                            <i class="fa-solid fa-camera"></i>
-                            <span>คลิกเพื่ออัปโหลดรูปภาพ</span>
-                        </label>
-                        <div class="preview-container">
-                            <img src="" alt="Preview">
-                            <button class="remove-btn" onclick="clearPreview(this)">ลบรูป</button>
-                        </div>
+                        <label class="upload-label" id="label_hydraulic"><input type="file" class="file-input" data-slot="hydraulic" accept="image/*" onchange="previewAndSave(this)"><i class="fa-solid fa-camera"></i><span>คลิกเพื่ออัปโหลด</span></label>
+                        <div class="preview-container" id="preview_hydraulic"><img src="" id="img_hydraulic" alt="Preview"><button type="button" class="remove-btn" onclick="clearAndSave('hydraulic')">ลบรูป</button></div>
                     </div>
                 </div>
-
                 <div class="upload-card">
-                    <div class="card-info">
-                        <h3>งานเดินท่อเข้าถัง</h3>
-                        <p>อัปโหลดรูปภาพแนวท่ออุตสาหกรรม จุดเชื่อมต่อเข้าถัง หรือวาล์วระบบ</p>
-                    </div>
+                    <div class="card-info"><h3>งาน Modify เครื่องจักร</h3><p>ชิ้นส่วนที่ดัดแปลง ปรับปรุงประสิทธิภาพเครื่องจักร</p></div>
                     <div class="upload-area">
-                        <label class="upload-label">
-                            <input type="file" class="file-input" accept="image/*" onchange="previewImage(this)">
-                            <i class="fa-solid fa-camera"></i>
-                            <span>คลิกเพื่ออัปโหลดรูปภาพ</span>
-                        </label>
-                        <div class="preview-container">
-                            <img src="" alt="Preview">
-                            <button class="remove-btn" onclick="clearPreview(this)">ลบรูป</button>
-                        </div>
+                        <label class="upload-label" id="label_modify"><input type="file" class="file-input" data-slot="modify" accept="image/*" onchange="previewAndSave(this)"><i class="fa-solid fa-camera"></i><span>คลิกเพื่ออัปโหลด</span></label>
+                        <div class="preview-container" id="preview_modify"><img src="" id="img_modify" alt="Preview"><button type="button" class="remove-btn" onclick="clearAndSave('modify')">ลบรูป</button></div>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="category-group">
-            <div class="group-title">
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-                <span>หมวดที่ 3: งานติดตั้งเครื่องจักรและแปรรูป (Machinery & Fabrication)</span>
-            </div>
+            <div class="group-title"><i class="fa-solid fa-industry"></i> หมวดที่ 3: งานโรงกลึงและแปรรูปโลหะ</div>
             <div class="upload-grid">
                 <div class="upload-card">
-                    <div class="card-info">
-                        <h3>งานติดตั้ง / Modify เครื่องจักร</h3>
-                        <p>อัปโหลดรูปการปรับปรุงเครื่องจักร ชิ้นส่วนที่ดัดแปลง หรือหน้างานติดตั้งใหม่</p>
-                    </div>
+                    <div class="card-info"><h3>งานกลึง • งานกัด</h3><p>ชิ้นงานแปรรูปจากเครื่องกลึง ชิ้นส่วนเครื่องจักร</p></div>
                     <div class="upload-area">
-                        <label class="upload-label">
-                            <input type="file" class="file-input" accept="image/*" onchange="previewImage(this)">
-                            <i class="fa-solid fa-camera"></i>
-                            <span>คลิกเพื่ออัปโหลดรูปภาพ</span>
-                        </label>
-                        <div class="preview-container">
-                            <img src="" alt="Preview">
-                            <button class="remove-btn" onclick="clearPreview(this)">ลบรูป</button>
-                        </div>
+                        <label class="upload-label" id="label_machining"><input type="file" class="file-input" data-slot="machining" accept="image/*" onchange="previewAndSave(this)"><i class="fa-solid fa-camera"></i><span>คลิกเพื่ออัปโหลด</span></label>
+                        <div class="preview-container" id="preview_machining"><img src="" id="img_machining" alt="Preview"><button type="button" class="remove-btn" onclick="clearAndSave('machining')">ลบรูป</button></div>
                     </div>
                 </div>
-
                 <div class="upload-card">
-                    <div class="card-info">
-                        <h3>งานทำการ์ดครอบความปลอดภัย</h3>
-                        <p>อัปโหลดรูปการ์ดครอบเซฟตี้ (Safety Guard) บริเวณจุดหมุนหรือจุดอันตราย</p>
-                    </div>
+                    <div class="card-info"><h3>งานเชื่อม</h3><p>รอยเชื่อมโครงสร้างโลหะ งานประกอบเหล็กหน้างาน</p></div>
                     <div class="upload-area">
-                        <label class="upload-label">
-                            <input type="file" class="file-input" accept="image/*" onchange="previewImage(this)">
-                            <i class="fa-solid fa-camera"></i>
-                            <span>คลิกเพื่ออัปโหลดรูปภาพ</span>
-                        </label>
-                        <div class="preview-container">
-                            <img src="" alt="Preview">
-                            <button class="remove-btn" onclick="clearPreview(this)">ลบรูป</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="upload-card">
-                    <div class="card-info">
-                        <h3>งานระบบไฮดรอลิค</h3>
-                        <p>อัปโหลดรูปสายไฮดรอลิค ปั๊ม กระบอกสูบ หรือชุดกำลัง (Power Unit)</p>
-                    </div>
-                    <div class="upload-area">
-                        <label class="upload-label">
-                            <input type="file" class="file-input" accept="image/*" onchange="previewImage(this)">
-                            <i class="fa-solid fa-camera"></i>
-                            <span>คลิกเพื่ออัปโหลดรูปภาพ</span>
-                        </label>
-                        <div class="preview-container">
-                            <img src="" alt="Preview">
-                            <button class="remove-btn" onclick="clearPreview(this)">ลบรูป</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="upload-card">
-                    <div class="card-info">
-                        <h3>งานกลึง • งานกัด • งานเชื่อม</h3>
-                        <p>อัปโหลดรูปชิ้นงานกลึง งาน Milling หรือรอยเชื่อมโครงสร้างโลหะต่างๆ</p>
-                    </div>
-                    <div class="upload-area">
-                        <label class="upload-label">
-                            <input type="file" class="file-input" accept="image/*" onchange="previewImage(this)">
-                            <i class="fa-solid fa-camera"></i>
-                            <span>คลิกเพื่ออัปโหลดรูปภาพ</span>
-                        </label>
-                        <div class="preview-container">
-                            <img src="" alt="Preview">
-                            <button class="remove-btn" onclick="clearPreview(this)">ลบรูป</button>
-                        </div>
+                        <label class="upload-label" id="label_welding"><input type="file" class="file-input" data-slot="welding" accept="image/*" onchange="previewAndSave(this)"><i class="fa-solid fa-camera"></i><span>คลิกเพื่ออัปโหลด</span></label>
+                        <div class="preview-container" id="preview_welding"><img src="" id="img_welding" alt="Preview"><button type="button" class="remove-btn" onclick="clearAndSave('welding')">ลบรูป</button></div>
                     </div>
                 </div>
             </div>
@@ -498,25 +158,16 @@
     </div>
 
     <section class="contact-sticky-banner">
-        <div class="contact-container">
-            <div class="contact-header">
-                <h3>ติดต่อสอบถาม / เรียกใช้บริการด่วน</h3>
-                <p>กดที่ปุ่มเบอร์โทรศัพท์ด้านล่างเพื่อโทรออกได้ทันที</p>
-            </div>
-            
-            <div class="phone-grid">
-                <a href="tel:0819947715" class="btn-phone">
-                    <i class="fa-solid fa-phone-flip"></i> 081-994-7715
-                </a>
-                <a href="tel:0898304774" class="btn-phone">
-                    <i class="fa-solid fa-phone-flip"></i> 089-830-4774
-                </a>
-            </div>
-
-            <div class="office-info">
-                <p><strong>สำนักงานใหญ่:</strong> 43/2 หมู่ 3 ต.หินซ้อน อ.แก่งคอย จ.สระบุรี 18110</p>
-                <p style="font-size: 0.8rem; color: #94A3B8; margin-top: 5px;">เลขประจำตัวผู้เสียภาษีอากร: 0105554019802</p>
-            </div>
+        <div class="contact-header">
+            <h3>ติดต่อสอบถาม / เรียกใช้บริการด่วน</h3>
+            <p style="color: #64748B;">กดที่เบอร์โทรศัพท์เพื่อโทรออกได้ทันที</p>
+        </div>
+        <div class="phone-grid">
+            <a href="tel:0898304774" class="btn-phone"><i class="fa-solid fa-phone-flip"></i> 089-830-4774</a>
+        </div>
+        <div style="font-size: 0.9rem; color: #475569;">
+            <p><strong>สำนักงานใหญ่:</strong> 43/2 หมู่ 3 ต.หินซ้อน อ.แก่งคอย จ.สระบุรี 18110</p>
+            <p style="font-size: 0.8rem; margin-top: 5px; color: #94A3B8;">เลขประจำตัวผู้เสียภาษีอากร: 0105554019802</p>
         </div>
     </section>
 
@@ -525,38 +176,91 @@
     </footer>
 
     <script>
-        function previewImage(input) {
-            const uploadArea = input.closest('.upload-area');
-            const previewContainer = uploadArea.querySelector('.preview-container');
-            const previewImg = previewContainer.querySelector('img');
-            const uploadLabel = uploadArea.querySelector('.upload-label');
+        const dbName = "NaichungLocalDB";
+        let db;
+
+        // 1. เปิดและสร้างระบบฐานข้อมูลในเครื่องคอม/มือถือของผู้ใช้
+        const request = indexedDB.open(dbName, 1);
+        
+        request.onupgradeneeded = function(e) {
+            db = e.target.result;
+            if (!db.objectStoreNames.contains("saved_images")) {
+                db.createObjectStore("saved_images", { keyPath: "slot" });
+            }
+        };
+
+        request.onsuccess = function(e) {
+            db = e.target.result;
+            // เมื่อเปิดหน้าเว็บขึ้นมา ให้ไปดึงข้อมูลเก่ามาแสดงผลทันที
+            loadSavedPreviews();
+        };
+
+        // 2. ฟังก์ชันอัปโหลดรูป แสดงพรีวิว และบันทึกลงฐานข้อมูลในเครื่องทันที
+        function previewAndSave(input) {
+            const slotName = input.getAttribute('data-slot');
+            const previewContainer = document.getElementById('preview_' + slotName);
+            const previewImg = document.getElementById('img_' + slotName);
+            const uploadLabel = document.getElementById('label_' + slotName);
 
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 
                 reader.onload = function(e) {
-                    previewImg.src = e.target.result;
+                    const base64Data = e.target.result;
+                    
+                    // แสดงผลบนหน้าจอ
+                    previewImg.src = base64Data;
                     previewContainer.style.display = 'block';
-                    uploadLabel.style.display = 'none'; // ซ่อนปุ่มกดชั่วคราวเพื่อให้เห็นรูปชัดๆ
+                    uploadLabel.style.display = 'none';
+
+                    // บันทึกรูปเก็บไว้ในเครื่องคอมพิวเตอร์อย่างถาวร
+                    const transaction = db.transaction(["saved_images"], "readwrite");
+                    const store = transaction.objectStore("saved_images");
+                    store.put({ slot: slotName, data: base64Data });
                 }
                 
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
-        function clearPreview(button) {
-            const uploadArea = button.closest('.upload-area');
-            const previewContainer = uploadArea.querySelector('.preview-container');
-            const previewImg = previewContainer.querySelector('img');
-            const uploadLabel = uploadArea.querySelector('.upload-label');
-            const fileInput = uploadArea.querySelector('.file-input');
-
-            fileInput.value = ''; // เคลียร์ไฟล์เก่า
+        // 3. ฟังก์ชันลบรูปภาพออกจากหน้าจอและฐานข้อมูลในเครื่อง
+        function clearAndSave(slotName) {
+            const previewContainer = document.getElementById('preview_' + slotName);
+            const previewImg = document.getElementById('img_' + slotName);
+            const uploadLabel = document.getElementById('label_' + slotName);
+            
+            // ล้างหน้าจอ
             previewImg.src = '';
             previewContainer.style.display = 'none';
-            uploadLabel.style.display = 'flex'; // แสดงปุ่มอัปโหลดกลับมา
+            uploadLabel.style.display = 'flex';
+
+            // ลบข้อมูลในเครื่องออก
+            const transaction = db.transaction(["saved_images"], "readwrite");
+            const store = transaction.objectStore("saved_images");
+            store.delete(slotName);
+        }
+
+        // 4. ฟังก์ชันดึงรูปภาพเก่าที่เคยเซฟไว้กลับมาแสดงอัตโนมัติเมื่อเปิดหน้าเว็บใหม่
+        function loadSavedPreviews() {
+            const transaction = db.transaction(["saved_images"], "readonly");
+            const store = transaction.objectStore("saved_images");
+            const getAllRequest = store.getAll();
+
+            getAllRequest.onsuccess = function(e) {
+                const savedItems = e.target.result;
+                savedItems.forEach(item => {
+                    const previewContainer = document.getElementById('preview_' + item.slot);
+                    const previewImg = document.getElementById('img_' + item.slot);
+                    const uploadLabel = document.getElementById('label_' + item.slot);
+
+                    if (previewImg && previewContainer && uploadLabel) {
+                        previewImg.src = item.data;
+                        previewContainer.style.display = 'block';
+                        uploadLabel.style.display = 'none';
+                    }
+                });
+            };
         }
     </script>
-
 </body>
 </html>
